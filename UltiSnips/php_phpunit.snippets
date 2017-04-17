@@ -1,44 +1,76 @@
 priority -40
 
-snippet putestcase "PHPUnit / Test Case" b
+snippet putestcase "PHPUnit / Test case" b
 <?php
 
 namespace `!v sniphpets#resolve_namespace()`;
 
 use `!v sniphpets#unittest#resolve_alternate()`;
+use PHPUnit\Framework\TestCase;
 
-class `!v sniphpets#basename()` extends \PHPUnit_Framework_TestCase
+class `!v sniphpets#basename()` extends TestCase
 {
 	${0}
 }
 endsnippet
 
-snippet pumock "PHPUnit / Mock Builder"
-\$this
-	->getMockBuilder('${1}')
-	->setMethods(array(${2}))
-	->disableOriginalConstructor()
-	->getMock()${0}
+snippet pudataprovider "PHPUnit / Data provider" b
+/**
+ * @dataProvider ${1}
+ */
+public function test${2}(${3})
+{
+	${0}
+}
+
+public function $1()
+{
+	yield;
+}
 endsnippet
 
-snippet pumockpartial "PHPUnit / Mock Builder Partial"
+snippet pumock "PHPUnit / Create mock"
+\$this->createMock(${1}::class)
+endsnippet
+
+snippet pumockbuilder "PHPUnit / Mock builder"
 \$this
-	->getMockBuilder('${1}')
-	->setConstructorArgs(array(${2}))
-	->setMethods(array(${3}))
-	->getMock()${0}
+	->getMockBuilder(${1}::class)
+	->setMethods([${2}])
+	->disableOriginalConstructor()
+	->getMock()
 endsnippet
 
 snippet puexpects "PHPUnit / Expects"
-->expects($this->${1:once}())
+->expects(\$this->${1:once}())
 ->method('${2}')
-->with(\$this->equalTo(${3}))
-->will(\$this->${4:returnValue}(${5}))${0}
+->willReturn(${3})${0}
 endsnippet
 
-snippet puexpectsat "PHPUnit / Expects at"
-->expects($this->at(${1:0}))
-->method('${2}')
-->with(\$this->equalTo(${3}))
-->will(\$this->${4:returnValue}(${5}))${0}
+snippet puwill "PHPUnit / Will return"
+->willReturn(${1})
+endsnippet
+
+snippet puwillargument "PHPUnit / Will return argument"
+->will(\$this->returnArgument(${1}))
+endsnippet
+
+snippet puwillcallback "PHPUnit / Will return callback"
+->will(\$this->returnCallback(function() {${1}}))
+endsnippet
+
+snippet puwillconsecutive "PHPUnit / Will conscutive calls"
+->will(\$this->onConsecutiveCalls(${1}))
+endsnippet
+
+snippet puwillexception "PHPUnit / Will throw exception"
+->will(\$this->throwException(new ${1:\Exception}))
+endsnippet
+
+snippet puwillself "PHPUnit / Will return self"
+->will(\$this->returnSelf())
+endsnippet
+
+snippet puwillmap "PHPUnit / Will return value map"
+->will(\$this->returnValueMap(${1}))
 endsnippet
