@@ -1,5 +1,9 @@
 priority -40
 
+global !p
+import sniphpets
+endglobal
+
 snippet putestcase "PHPUnit / Test case" b
 <?php
 
@@ -29,48 +33,74 @@ public function $1()
 }
 endsnippet
 
-snippet pumock "PHPUnit / Create mock"
-\$this->createMock(${1}::class)
+snippet pustub "PHPUnit / Create stub" b
+\$${2:`!p snip.rv = sniphpets.lcfirst(t[1])`} = \$this->createMock(${1}::class);
+\$$2
+	->method('${3}')
+	->will(\$this->returnValue(${4}));
 endsnippet
 
-snippet pumockbuilder "PHPUnit / Mock builder"
-\$this
+snippet pufake "PHPUnit / Create fake" b
+\$${2:`!p snip.rv = sniphpets.lcfirst(t[1])`} = \$this->createMock(${1}::class);
+\$$2
+	->method('${3}')
+	->will(\$this->returnCallback(
+		function (${4}) {
+			${5}
+		}
+	));
+endsnippet
+
+snippet pumock "PHPUnit / Create mock" b
+\$${2:`!p snip.rv = sniphpets.lcfirst(t[1])`} = \$this->createMock(${1}::class);
+endsnippet
+
+snippet pumockbuilder "PHPUnit / Mock builder" b
+\$${2:`!p snip.rv = sniphpets.lcfirst(t[1])`} = \$this
 	->getMockBuilder(${1}::class)
 	->setMethods([${2}])
 	->disableOriginalConstructor()
-	->getMock()
+	->getMock();
 endsnippet
 
-snippet puexpects "PHPUnit / Expects"
-->expects(\$this->${1:once}())
-->method('${2}')
-->willReturn(${3})${0}
+snippet puexpects "PHPUnit / Expects" b
+\$${1}
+	->expects(\$this->${2:once}())
+	->method('${3}')
 endsnippet
 
-snippet puwill "PHPUnit / Will return"
-->willReturn(${1})
+snippet puwill "PHPUnit / Will" i
+->will(\$this->${1}(${2}));
 endsnippet
 
-snippet puwillargument "PHPUnit / Will return argument"
+snippet puwillreturn "PHPUnit / Will return" i
+->will(\$this->return${1:Value}(${2}));
+endsnippet
+
+snippet puwillvalue "PHPUnit / Will return value" i
+->will(\$this->returnValue(${1}));
+endsnippet
+
+snippet puwillargument "PHPUnit / Will return argument" i
 ->will(\$this->returnArgument(${1}))
 endsnippet
 
-snippet puwillcallback "PHPUnit / Will return callback"
-->will(\$this->returnCallback(function() {${1}}))
+snippet puwillcallback "PHPUnit / Will return callback" i
+->will(\$this->returnCallback(${1:function (${2}) {${3}})})
 endsnippet
 
-snippet puwillconsecutive "PHPUnit / Will conscutive calls"
+snippet puwillconsecutive "PHPUnit / Will conscutive calls" i
 ->will(\$this->onConsecutiveCalls(${1}))
 endsnippet
 
-snippet puwillexception "PHPUnit / Will throw exception"
+snippet puwillexception "PHPUnit / Will throw exception" i
 ->will(\$this->throwException(new ${1:\Exception}))
 endsnippet
 
-snippet puwillself "PHPUnit / Will return self"
+snippet puwillself "PHPUnit / Will return self" i
 ->will(\$this->returnSelf())
 endsnippet
 
-snippet puwillmap "PHPUnit / Will return value map"
+snippet puwillmap "PHPUnit / Will return value map" i
 ->will(\$this->returnValueMap(${1}))
 endsnippet
