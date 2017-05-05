@@ -14,23 +14,88 @@ use PHPUnit\Framework\TestCase;
 
 class `!v sniphpets#basename()` extends TestCase
 {
-	${0}
+	${VISUAL}${0}
 }
 endsnippet
 
-snippet pudataprovider "PHPUnit / Data provider" b
+snippet putest "PHPUnit / Test method" b
+public function test${1}()
+{
+	${VISUAL}${0}
+}
+endsnippet
+
+snippet putestdepends "PHPUnit / Test method with dependency" b
+/**
+ * @depends ${1}
+ */
+public function test${2}(${3})
+{
+	${VISUAL}${0}
+}
+endsnippet
+snippet putestprovider "PHPUnit / Test method with data provider" b
 /**
  * @dataProvider ${1}
  */
 public function test${2}(${3})
 {
-	${0}
+	${VISUAL}${0}
 }
 
 public function $1()
 {
 	yield;
 }
+endsnippet
+
+snippet pua "PHPUnit / Assert" b
+\$this->assert${1}(${2});
+endsnippet
+
+snippet putrue "PHPUnit / Assert true" b
+\$this->assertTrue(${1});
+endsnippet
+
+snippet pufalse "PHPUnit / Assert false" b
+\$this->assertFalse(${1});
+endsnippet
+
+snippet punull "PHPUnit / Assert null" b
+\$this->assertNull(${1});
+endsnippet
+
+snippet pusame "PHPUnit / Assert same" b
+\$this->assertSame(${1}, ${2});
+endsnippet
+
+snippet puequals "PHPUnit / Assert equals" b
+\$this->assertEquals(${1}, ${2});
+endsnippet
+
+snippet pucount "PHPUnit / Assert count" b
+\$this->assertCount(${1}, ${2});
+endsnippet
+
+snippet pucontains "PHPUnit / Assert contains" b
+\$this->assertContains(${1}, ${2});
+endsnippet
+
+snippet puinstance "PHPUnit / Assert instance of" b
+\$this->assertInstanceOf(${1}::class, ${2});
+endsnippet
+
+snippet puincomplete "PHPUnit / Mark incomplete" b
+\$this->markTestIncomplete(${1:'This test has not been implemented yet.'});
+endsnippet
+
+snippet puskip "PHPUnit / Mark skipped" b
+\$this->markTestSkipped(${1:'This test has been skipped.'});
+endsnippet
+
+snippet puexception "PHPUnit / Expect exception" b
+\$this->expectException(${1}::class);
+\$this->expectExceptionMessage('${1}');
 endsnippet
 
 snippet pustub "PHPUnit / Create stub" b
