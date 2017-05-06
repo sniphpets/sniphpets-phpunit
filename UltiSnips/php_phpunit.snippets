@@ -4,7 +4,7 @@ global !p
 import sniphpets
 endglobal
 
-snippet putestcase "PHPUnit / Test case" b
+snippet pucase "PHPUnit / Test case" b
 <?php
 
 namespace `!v sniphpets#resolve_namespace()`;
@@ -91,6 +91,10 @@ endsnippet
 
 snippet puskip "PHPUnit / Mark skipped" b
 \$this->markTestSkipped(${1:'This test has been skipped.'});
+endsnippet
+
+snippet pufail "PHPUnit / Fail" b
+\$this->fail(${1});
 endsnippet
 
 snippet puexception "PHPUnit / Expect exception" b
