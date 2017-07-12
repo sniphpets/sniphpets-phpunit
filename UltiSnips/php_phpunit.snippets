@@ -132,6 +132,12 @@ snippet pumockbuilder "PHPUnit / Mock builder" b
 	->getMock();
 endsnippet
 
+snippet pumockobjectdoc "PHPUnit / Mock Object doc"
+/**
+ * @var \PHPUnit_Framework_MockObject_MockObject
+ */
+endsnippet
+
 snippet puexpects "PHPUnit / Expects" b
 \$${1}
 	->expects(\$this->${2:once}())
