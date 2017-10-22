@@ -18,6 +18,17 @@ class `!v sniphpets#basename()` extends TestCase
 }
 endsnippet
 
+snippet pucase5 "PHPUnit 5 / Test case" b
+<?php
+
+namespace `!v sniphpets#resolve_namespace()`;
+
+class `!v sniphpets#basename()` extends \PHPUnit_Framework_TestCase
+{
+	${VISUAL}${0}
+}
+endsnippet
+
 snippet putest "PHPUnit / Test method" b
 public function test${1}()
 {
