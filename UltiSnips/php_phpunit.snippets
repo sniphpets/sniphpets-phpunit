@@ -131,12 +131,12 @@ snippet pufake "PHPUnit / Create fake" b
 	));
 endsnippet
 
-snippet pumock "PHPUnit / Create mock" b
-\$${2:`!p snip.rv = sniphpets.lcfirst(t[1])`} = \$this->createMock(${1}::class);
-endsnippet
-
 snippet pupro "PHPUnit / Prophesize" b
 \$${2:`!p snip.rv = sniphpets.lcfirst(t[1])`} = \$this->prophesize(${1}::class);
+endsnippet
+
+snippet pumock "PHPUnit / Create mock" b
+\$${2:`!p snip.rv = sniphpets.lcfirst(t[1])`} = \$this->createMock(${1}::class);
 endsnippet
 
 snippet pumockbuilder "PHPUnit / Mock builder" b
