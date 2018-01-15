@@ -25,6 +25,16 @@ public function test${1}()
 }
 endsnippet
 
+snippet putesta "PHPUnit / Test method with @test annotation" b
+/**
+ * @test
+ */
+public function ${1}()
+{
+	${VISUAL}${0}
+}
+endsnippet
+
 snippet putestdepends "PHPUnit / Test method with dependency" b
 /**
  * @depends ${1}
