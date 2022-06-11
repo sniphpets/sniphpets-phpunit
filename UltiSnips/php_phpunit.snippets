@@ -113,26 +113,24 @@ snippet puexception "PHPUnit / Expect exception" b
 \$this->expectExceptionMessage('${2}');
 endsnippet
 
+snippet pupro "PHPUnit / Prophesize" b
+\$${2:`!p snip.rv = sniphpets.lcfirst(t[1])`} = \$this->prophesize(${1}::class);
+endsnippet
+
 snippet pustub "PHPUnit / Create stub" b
-\$${2:`!p snip.rv = sniphpets.lcfirst(t[1])`} = \$this->createMock(${1}::class);
+\$${2:`!p snip.rv = sniphpets.lcfirst(t[1])`} = \$this->createStub(${1}::class);
 \$$2
 	->method('${3}')
-	->will(\$this->returnValue(${4}));
+	->willReturn(${4});
 endsnippet
 
 snippet pufake "PHPUnit / Create fake" b
-\$${2:`!p snip.rv = sniphpets.lcfirst(t[1])`} = \$this->createMock(${1}::class);
+\$${2:`!p snip.rv = sniphpets.lcfirst(t[1])`} = \$this->createStub(${1}::class);
 \$$2
 	->method('${3}')
-	->will(\$this->returnCallback(
-		function (${4}) {
-			${5}
-		}
-	));
-endsnippet
-
-snippet pupro "PHPUnit / Prophesize" b
-\$${2:`!p snip.rv = sniphpets.lcfirst(t[1])`} = \$this->prophesize(${1}::class);
+	->willReturnCallback(function (${4}) {
+		${5}
+	});
 endsnippet
 
 snippet pumock "PHPUnit / Create mock" b
@@ -145,12 +143,6 @@ snippet pumockbuilder "PHPUnit / Mock builder" b
 	->setMethods([${2}])
 	->disableOriginalConstructor()
 	->getMock();
-endsnippet
-
-snippet pumockdoc "PHPUnit / Mock Object doc"
-/**
- * @var \PHPUnit_Framework_MockObject_MockObject
- */
 endsnippet
 
 snippet puexpects "PHPUnit / Expects" b
